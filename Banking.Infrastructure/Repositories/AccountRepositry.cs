@@ -22,6 +22,11 @@ namespace Banking.Infrastructure.Repositories
             return await _context.SaveChangesAsync();
         }
 
+        public async Task<Account> GetAccountById(Guid accountId)
+        {
+            return await _context.Accounts.FirstOrDefaultAsync(a=>a.AccountId == accountId);
+        }
+
         public int GenerateNewAccountNumberAsync()
         {
             if (_context.Accounts.Count() > 0)

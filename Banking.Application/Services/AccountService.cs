@@ -41,6 +41,21 @@ namespace Banking.Application.Services
             return response;
         }
 
+        public async Task<ResponseViewModel<Account>> GetAccountById(Guid accountId)
+        {
+            var response = new ResponseViewModel<Account>();
+            try
+            {
+                response.Data = await _accountRepository.GetAccountById(accountId);
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Fetching account details failed: {message}", ex.Message);
+                response.Message = "Fetching account details failed";
+            }
 
+            return response;
+        }
     }
 }

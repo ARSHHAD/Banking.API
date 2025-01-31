@@ -10,6 +10,7 @@ namespace Banking.Application.Contracts.Interfaces
     public interface IAccountRepository
     {
         Task<int> CreateAccount(Account account);
+        Task<Account> GetAccountById(Guid accountId);
         int GenerateNewAccountNumberAsync();
     }
 }
